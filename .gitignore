@@ -1,0 +1,12 @@
+*.lua
+*.timestamp
+*.aux
+*.bcf
+*.log
+*.out
+*.run.xml
+*.xmpi
+*.log
+venv/
+__pycache__/
+_private
