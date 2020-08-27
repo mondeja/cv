@@ -1,7 +1,17 @@
-name: Álvaro Mondéjar Rubio
-tagline: Fullstack web developer
-email: mondejar1994@gmail.com
-homepage: https://mondeja.github.io/blog/es
+tagline: Desarrollador web fullstack
+homepage: mondeja.github.io/blog/es
 
-# Name of the thumbnail image (without extension)
-image: thumbnail
+# "Experience" section
+experience_section:
+  # Title for the "Experience" section
+  title: Experiencia
+  events:
+    -
+      job_title: Programador web
+      company: Grupo Afronta SL.
+      start_date: Agosto 2018
+      end_date: Actualmente
+      location: Sevilla (España) / A distancia
+      descriptions:
+        - Desarrollo y mantenimiento de aplicaciones destinadas a la ingeniería de redes telefónicas.
+        - Diseño, desarrollo y mantenimiento de aplicación GIS para soluciones SmartCities.

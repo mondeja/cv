@@ -9,4 +9,5 @@
 *.log
 venv/
 __pycache__/
-_private
+/i18n/_private/*.yml
+src/main.*.tex

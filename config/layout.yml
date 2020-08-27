@@ -1,0 +1,20 @@
+# Photos at the top of the document
+photos:
+  -
+    # Align right or left
+    align: right
+    # Width of the image, in centimeters
+    width: 2.8
+    # Filename of the thumbnail image, without extension.
+    #   Must be located at `src/` directory
+    filename: thumbnail
+  # You can add more photographies here (uncoment next lines)
+  #-
+  #  align: left
+  #  width: 2.5
+  #  filename: another-file
+
+# This factor specifies how much will be left column bigger than the right.
+#   For example, if 0.6 is specified, the first column will fill 60%
+#   of the width of the document and the right 40%
+columnratio: 0.59

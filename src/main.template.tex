@@ -83,19 +83,42 @@
 \name{$name$}
 \tagline{$tagline$}
 %% You can add multiple photos on the left or right
-\photoR{2.8cm}{$image$}
-% \photoL{2.5cm}{Yacht_High,Suitcase_High}
+[[ for photo in photos]]
+\photo[[ if photo.align == 'right' ]]R[[ else ]]L[[ endif ]]{$photo.width$cm}{$photo.filename$}
+%\photoR{2.8cm}{$image$}
+%\photoL{2.5cm}{$image$}
+[[ endfor]]
 
 \personalinfo{%
   % Not all of these are required!
   \email{$email$}
   \phone{$phone$}
   \mailaddress{$address$}
-  \location{$location$, $country$}
+  [[ if location or country ]]
+  \location{[[ if location ]]$location$[[ endif ]][[ if location and country ]], [[ endif ]][[ if country ]]$country$[[ endif ]]}
+  [[ endif ]]
+  [[ if homepage ]]
   \homepage{$homepage$}
-  \twitter{@twitterhandle}
-  \linkedin{your_id}
-  \github{your_id}
+  [[ endif ]]
+
+  [[ if twitter ]]
+  \twitter{$twitter$}
+  [[ endif ]]
+  [[ if linkeding ]]
+  \linkedin{$linkedin$}
+  [[ endif ]]
+  [[ if github_username ]]
+  \github{$github_username$}
+  [[ endif ]]
+  [[ if gitlab_username ]]
+  \gitlab{$gitlab_username$}
+  [[ endif ]]
+  [[ if stackexchange_id ]]
+  \printinfo{\faStackExchange}{StackExchange}[https://stackexchange.com/users/$stackexchange_id$?tab=accounts]
+  [[ endif ]]
+  [[ if telegram_username ]]
+  \telegram{$telegram_username$}
+  [[ endif ]]
   %% You MUST add the academicons option to \documentclass, then compile with LuaLaTeX or XeLaTeX, if you want to use \orcid or other academicons commands.
   % \orcid{0000-0000-0000-0000}
   %% You can add your own arbtrary detail with
@@ -112,26 +135,26 @@
 % \AtBeginEnvironment{itemize}{\small}
 
 %% Set the left/right column width ratio to 6:4.
-\columnratio{0.6}
+\columnratio{$columnratio$}
 
 % Start a 2-column paracol. Both the left and right columns will automatically
 % break across pages if things get too long.
 \begin{paracol}{2}
-\cvsection{Experience}
+\cvsection{$experience_section.title$}
 
-\cvevent{Job Title 1}{Company 1}{Month 20XX -- Ongoing}{Location}
+[[ for event in experience_section.events ]]
+\cvevent{$event.job_title$}{$event.company$}{$event.start_date$ -- $event.end_date$}{$event.location$}
 \begin{itemize}
-\item Job description 1
-\item Job description 2
+[[ for description in event.descriptions ]]
+\item $description$
+[[ endfor ]]
 \end{itemize}
 
+[[ if loop.index < experience_section.events|length ]]
 \divider
+[[ endif]]
 
-\cvevent{Job Title 2}{Company 2}{Month 20XX -- Ongoing}{Location}
-\begin{itemize}
-\item Job description 1
-\item Job description 2
-\end{itemize}
+[[ endfor ]]
 
 \cvsection{Projects}
 

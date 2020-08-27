@@ -30,19 +30,17 @@ function main {
   find i18n -maxdepth 1 -type f -name '*.yml' | while read -r lang_filepath; do
     lang=$(basename "$lang_filepath" | cut -d'.' -f1)
 
-    if [ -f "main.$lang.tex" ]; then
-      rm main.$lang.tex
-    fi;
+    rm -f main.$lang.tex
 
     # Render `main.template.tex` file using the language
     python scripts/render_template.py "$lang" > src/main.$lang.tex
 
     cd src
 
-    pdflatex main.$lang.tex
-    pdflatex main.$lang.tex
+    pdflatex main.$lang.tex || exit $?
+    pdflatex main.$lang.tex || exit $?
 
-    rm main.$lang.tex
+    #rm main.$lang.tex
     cd ..
 
     cleanSrcDirectory

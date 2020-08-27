@@ -211,10 +211,12 @@
 \NewInfoField{email}{\faAt}[mailto:]
 \NewInfoField{mailaddress}{\faEnvelope}
 \NewInfoField{phone}{\faPhone}
-\NewInfoField{homepage}{\faGlobe}[https://]
+\NewInfoField{homepage}{\faCloud}[https://]
 \NewInfoField{twitter}{\faTwitter}[https://twitter.com/]
 \NewInfoField{linkedin}{\faLinkedin}[https://linkedin.com/in/]
 \NewInfoField{github}{\faGithub}[https://github.com/]
+\NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+\NewInfoField{telegram}{\faTelegramPlane}[https://t.me/]
 \NewInfoField{orcid}{\aiOrcid}[https://orcid.org/]
 \NewInfoField{location}{\faMapMarker}
 
