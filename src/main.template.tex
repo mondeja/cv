@@ -29,7 +29,7 @@
 %% See http://texdoc.net/pkg/fontawesome5 and http://texdoc.net/pkg/academicons for full list of symbols. You MUST compile with XeLaTeX or LuaLaTeX if you want to use academicons.
 
 % Change the page layout if you need to
-\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
+\geometry{left=$layout.margin.left$cm,right=$layout.margin.right$cm,top=$layout.margin.top$cm,bottom=$layout.margin.bottom$cm,columnsep=$layout.columnsep$cm}
 
 % The paracol package lets you typeset columns of text in parallel
 \usepackage{paracol}
@@ -50,19 +50,24 @@
 \fi
 
 % Change the colours if you want to
-\definecolor{SlateGrey}{HTML}{2E2E2E}
-\definecolor{LightGrey}{HTML}{666666}
-\definecolor{DarkPastelRed}{HTML}{450808}
-\definecolor{PastelRed}{HTML}{8F0D0D}
-\definecolor{GoldenEarth}{HTML}{E7D192}
-\colorlet{name}{black}
-\colorlet{tagline}{PastelRed}
-\colorlet{heading}{DarkPastelRed}
-\colorlet{headingrule}{GoldenEarth}
-\colorlet{subheading}{PastelRed}
-\colorlet{accent}{PastelRed}
-\colorlet{emphasis}{SlateGrey}
-\colorlet{body}{LightGrey}
+[[ for colorname, colorhex in styling.colors.items() ]]
+\definecolor{$colorname|camelize$}{HTML}{$colorhex$}
+\colorlet{$colorname$}{$colorname|camelize$}
+[[ endfor ]]
+
+%\definecolor{SlateGrey}{HTML}{2E2E2E}
+%\definecolor{LightGrey}{HTML}{666666}
+%\definecolor{DarkPastelRed}{HTML}{450808}
+%\definecolor{PastelRed}{HTML}{8F0D0D}
+%\definecolor{GoldenEarth}{HTML}{E7D192}
+%\colorlet{name}{black}
+%\colorlet{tagline}{PastelRed}
+%\colorlet{heading}{DarkPastelRed}
+%\colorlet{headingrule}{GoldenEarth}
+%\colorlet{subheading}{PastelRed}
+%\colorlet{accent}{PastelRed}
+%\colorlet{emphasis}{SlateGrey}
+%\colorlet{body}{LightGrey}
 
 % Change some fonts, if necessary
 \renewcommand{\namefont}{\Huge\rmfamily\bfseries}
@@ -83,7 +88,7 @@
 \name{$name$}
 \tagline{$tagline$}
 %% You can add multiple photos on the left or right
-[[ for photo in photos]]
+[[ for photo in layout.photos]]
 \photo[[ if photo.align == 'right' ]]R[[ else ]]L[[ endif ]]{$photo.width$cm}{$photo.filename$}
 %\photoR{2.8cm}{$image$}
 %\photoL{2.5cm}{$image$}
@@ -135,57 +140,92 @@
 % \AtBeginEnvironment{itemize}{\small}
 
 %% Set the left/right column width ratio to 6:4.
-\columnratio{$columnratio$}
+
+\columnratio{$layout.columnratio$}
 
 % Start a 2-column paracol. Both the left and right columns will automatically
 % break across pages if things get too long.
 \begin{paracol}{2}
-\cvsection{$experience_section.title$}
 
-[[ for event in experience_section.events ]]
-\cvevent{$event.job_title$}{$event.company$}{$event.start_date$ -- $event.end_date$}{$event.location$}
+[[ if experience_section.jobs.events|length > 0 ]]
+\cvsection{$experience_section.jobs.title$}
+
+[[ for job in experience_section.jobs.events ]]
+\cvevent{$job.title$}{[[ if job.company ]]$job.company$[[ endif ]]}{[[if job.start_date ]]$job.start_date$[[ endif ]][[ if job.start_date and job.end_date]] -- [[ endif ]][[ if job.end_date ]]$job.end_date$[[ endif ]]}{[[ if job.location ]]$job.location$[[ endif ]]}
+[[ if job.description ]]
+$job.description$
+[[ else ]]
 \begin{itemize}
-[[ for description in event.descriptions ]]
+[[ for description in job.descriptions ]]
 \item $description$
 [[ endfor ]]
 \end{itemize}
+[[ endif ]]
 
-[[ if loop.index < experience_section.events|length ]]
+[[ if loop.index < experience_section.jobs.events|length ]]
 \divider
-[[ endif]]
-
+[[ endif ]]
 [[ endfor ]]
+[[ endif ]]
 
-\cvsection{Projects}
-
-\cvevent{Project 1}{Funding agency/institution}{}{}
-\begin{itemize}
-\item Details
-\end{itemize}
-
-\divider
-
-\cvevent{Project 2}{Funding agency/institution}{Project duration}{}
-A short abstract would also work.
-
+[[ if layout.new_page.left_column.after_experience ]]
+\newpage
+[[ else ]]
 \medskip
+[[ endif ]]
 
-\cvsection{A Day of My Life}
+[[ if experience_section.projects.events|length > 0 ]]
+\cvsection{$experience_section.projects.title$}
+
+[[ for project in experience_section.projects.events ]]
+\cvevent{$project.name$}{[[ if project.institution ]]$project.institution$[[ endif ]]}{[[ if project.start_date ]]$project.start_date$[[ endif ]][[ if project.start_date and project.end_date ]] -- [[ endif ]][[ if project.end_date ]]$project.end_date$[[ endif ]]}{[[ if project.location ]]$project.location$[[ endif ]]}
+[[ if project.description ]]
+$project.description$
+[[ else ]]
+\begin{itemize}
+[[ for description in project.descriptions ]]
+\item $description$
+[[ endfor ]]
+\end{itemize}
+[[ endif ]]
+
+[[ if loop.index < experience_section.projects.events|length ]]
+\divider
+[[ endif ]]
+[[ endfor ]]
+[[ endif ]]
+
+
+[[ if layout.new_page.left_column.after_projects ]]
+\newpage
+[[ else ]]
+\medskip
+[[ endif ]]
+
+
+\cvsection{$a_day_of_my_life.title$}
 
 % Adapted from @Jake's answer from http://tex.stackexchange.com/a/82729/226
 % \wheelchart{outer radius}{inner radius}{
 % comma-separated list of value/text width/color/detail}
-\wheelchart{1.5cm}{0.5cm}{%
-  6/8em/accent!30/{Sleep,\\beautiful sleep},
-  3/8em/accent!40/Hopeful novelist by night,
-  8/8em/accent!60/Daytime job,
-  2/10em/accent/Sports and relaxation,
-  5/6em/accent!20/Spending time with family
+% hours/text-width/color-percent/text
+\wheelchart{$layout.a_day_of_my_life_wheel.outer_radius$cm}{$layout.a_day_of_my_life_wheel.inner_radius$cm}{%
+  [[ for activity in a_day_of_my_life.activities ]]
+  $activity.hours$/$activity.text_width$em/ADayOfMyLifeWheel!$activity.percent_color$/{$activity.text$}[[ if loop.index < a_day_of_my_life.activities|length ]],[[ endif ]]
+  [[ endfor ]]
 }
+%6/8em/accent!30/{Sleep,\\beautiful sleep},
+%3/8em/accent!40/Hopeful novelist by night,
+%8/8em/accent!60/Daytime job,
+%2/10em/accent!100/Sports and relaxation,
+%5/6em/accent!20/Spending time with family
 
-% use ONLY \newpage if you want to force a page break for
-% ONLY the current column
+[[ if layout.new_page.left_column.after_a_day_on_my_life ]]
 \newpage
+[[ else ]]
+\medskip
+[[ endif ]]
+
 
 \cvsection{Publications}
 

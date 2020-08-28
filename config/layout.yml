@@ -1,3 +1,13 @@
+# Margins of the document in centimeters
+margin:
+  right: 1.25
+  left: 1.25
+  top: 1.5
+  bottom: 1.5
+
+# Column separation, in centimeters
+columnsep: 1.2
+
 # Photos at the top of the document
 photos:
   -
@@ -18,3 +28,16 @@ photos:
 #   For example, if 0.6 is specified, the first column will fill 60%
 #   of the width of the document and the right 40%
 columnratio: 0.59
+
+# Sizes for the "A day on my life" wheel
+a_day_of_my_life_wheel:
+  outer_radius: 1.5
+  inner_radius: 0.5
+
+# Controls how the columns jump to the next page between sections
+new_page:
+  left_column:
+    # After experience section, jump left column to new page
+    after_experience: false
+    after_projects: false
+    after_a_day_on_my_life: false
