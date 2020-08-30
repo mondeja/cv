@@ -1,0 +1,93 @@
+tagline: Desarrollador web fullstack
+homepage: mondeja.github.io/blog/es
+
+# "Experience" section
+experience_section:
+  # Title for the "Experience" section
+  jobs:
+    title: Experiencia
+    events:
+      -
+        position: 'Profesor particular de producción musical {\faItunesNote}'
+        company: Autónomo
+        start_date: Enero de 2011
+        end_date: Julio 2014
+        location: Sevilla (España)
+        descriptions:
+          - Sintetización de música electrónica y diseño de armonías.
+          - Enseñanza en el manejo de programas FLStudio y Cubase.
+          - Asesoramiento en proyectos musicales de los alumnos.
+      -
+        position: 'Profesor particular de linguística computacional {\faLanguage}'
+        company: Autónomo
+        start_date: Enero 2017
+        end_date: Julio 2017
+        location: Jerez de la Frontera - Cádiz (España)
+        description: 'Formador de estudiantes de la Universidad de Cádiz en linguística computacional con Python: expresiones regulares con la biblioteca estándar, procesamiento de lenguaje natural con NLTK...'
+      -
+        position: 'Director de ingeniería de software {\faUserTie}'
+        company: Empresa no fundada
+        start_date: Julio 2017
+        end_date: Noviembre 2017
+        location: Islantilla - Jerez de la Frontera (España)
+        description: 'Desarrollo backend/frontend de un proyecto de minado y procesamiento de datos en mercados de criptomonedas: {\faBtc}, {\faEthereum}, {\faMonero}...'
+      -
+        position: 'Desarrollador GIS web y analista fullstack {\faMap}'
+        company: Grupo Afronta SL.
+        start_date: Agosto 2018
+        end_date: Actualmente
+        location: Sevilla (España) / A distancia
+        descriptions:
+          - Desarrollo y mantenimiento de aplicaciones destinadas a la ingeniería de redes telefónicas.
+          - Integración de proyectos GIS con las aplicaciones de la empresa y sus clientes.
+          - Diseño, desarrollo y mantenimiento de aplicación GIS para soluciones SmartCities.
+  projects:
+    title: Proyectos
+    events: []
+      #-
+      #  name: Nombre del proyecto
+      #  institution:
+      #  start_date:
+      #  end_date:
+      #  location:
+      #  descriptions:
+      #    - Descripción A
+      #    - Descripción B
+
+a_day_of_my_life:
+  title: Un día de mi vida
+  activities:
+    -
+      text: '{\faBed} Durmiendo'
+      text_width: 8
+      hours: 6
+      percent_color: 30
+    -
+      text: '{\faCode} Desarrollo open source'
+      text_width: 8
+      hours: 4
+      percent_color: 40
+    -
+      text: 'Trabajando {\faLaptop}'
+      text_width: 8
+      hours: 8
+      percent_color: 60
+    -
+      text: 'Deporte y relajación {\faTableTennis}'
+      text_width: 10
+      hours: 2
+      percent_color: 100
+    -
+      text: 'Con la familia {\faUserFriends}'
+      text_width: 8
+      hours: 2
+      percent_color: 20
+    -
+      text: 'Quehaceres {\faPeopleCarry}'
+      text_width: 8
+      hours: 2
+      percent_color: 20
+
+my_life_philosophy:
+  title: 'Filosofía de trabajo'
+  quote: 'Calidad y productividad en equilibrio, como genialidad y trabajo en equipo.'

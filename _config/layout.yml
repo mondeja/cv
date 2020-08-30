@@ -27,7 +27,7 @@ photos:
 # This factor specifies how much will be left column bigger than the right.
 #   For example, if 0.6 is specified, the first column will fill 60%
 #   of the width of the document and the right 40%
-columnratio: 0.59
+columnratio: 0.6
 
 # Sizes for the "A day on my life" wheel
 a_day_of_my_life_wheel:
@@ -40,4 +40,4 @@ new_page:
     # After experience section, jump left column to new page
     after_experience: false
     after_projects: false
-    after_a_day_on_my_life: false
+    after_a_day_on_my_life: true

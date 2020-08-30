@@ -29,7 +29,7 @@
 %% See http://texdoc.net/pkg/fontawesome5 and http://texdoc.net/pkg/academicons for full list of symbols. You MUST compile with XeLaTeX or LuaLaTeX if you want to use academicons.
 
 % Change the page layout if you need to
-\geometry{left=$layout.margin.left$cm,right=$layout.margin.right$cm,top=$layout.margin.top$cm,bottom=$layout.margin.bottom$cm,columnsep=$layout.columnsep$cm}
+\geometry{left=\VAR{layout.margin.left}cm,right=\VAR{layout.margin.right}cm,top=\VAR{layout.margin.top}cm,bottom=\VAR{layout.margin.bottom}cm,columnsep=\VAR{layout.columnsep}cm}
 
 % The paracol package lets you typeset columns of text in parallel
 \usepackage{paracol}
@@ -50,10 +50,10 @@
 \fi
 
 % Change the colours if you want to
-[[ for colorname, colorhex in styling.colors.items() ]]
-\definecolor{$colorname|camelize$}{HTML}{$colorhex$}
-\colorlet{$colorname$}{$colorname|camelize$}
-[[ endfor ]]
+\BLOCK{ for colorname, colorhex in style.colors.items() }
+\definecolor{\VAR{colorname|camelize}}{HTML}{\VAR{colorhex}}
+\colorlet{\VAR{colorname}}{\VAR{colorname|camelize}}
+\BLOCK{ endfor }
 
 %\definecolor{SlateGrey}{HTML}{2E2E2E}
 %\definecolor{LightGrey}{HTML}{666666}
@@ -85,47 +85,52 @@
 \addbibresource{sample.bib}
 
 \begin{document}
-\name{$name$}
-\tagline{$tagline$}
+\name{\VAR{name}}
+\tagline{\VAR{tagline}}
 %% You can add multiple photos on the left or right
-[[ for photo in layout.photos]]
-\photo[[ if photo.align == 'right' ]]R[[ else ]]L[[ endif ]]{$photo.width$cm}{$photo.filename$}
+\BLOCK{ for photo in layout.photos }
+\photo\BLOCK{ if photo.align == 'right' }R\BLOCK{ else }L\BLOCK{ endif }{\VAR{photo.width}cm}{\VAR{photo.filename}}
 %\photoR{2.8cm}{$image$}
 %\photoL{2.5cm}{$image$}
-[[ endfor]]
+\BLOCK{ endfor }
 
 \personalinfo{%
-  % Not all of these are required!
-  \email{$email$}
-  \phone{$phone$}
-  \mailaddress{$address$}
-  [[ if location or country ]]
-  \location{[[ if location ]]$location$[[ endif ]][[ if location and country ]], [[ endif ]][[ if country ]]$country$[[ endif ]]}
-  [[ endif ]]
-  [[ if homepage ]]
-  \homepage{$homepage$}
-  [[ endif ]]
-
-  [[ if twitter ]]
-  \twitter{$twitter$}
-  [[ endif ]]
-  [[ if linkeding ]]
-  \linkedin{$linkedin$}
-  [[ endif ]]
-  [[ if github_username ]]
-  \github{$github_username$}
-  [[ endif ]]
-  [[ if gitlab_username ]]
-  \gitlab{$gitlab_username$}
-  [[ endif ]]
-  [[ if stackexchange_id ]]
-  \printinfo{\faStackExchange}{StackExchange}[https://stackexchange.com/users/$stackexchange_id$?tab=accounts]
-  [[ endif ]]
-  [[ if telegram_username ]]
-  \telegram{$telegram_username$}
-  [[ endif ]]
+  % FontAwesome5 icons: http://www.ipgp.fr/~moguilny/LaTeX/fontawesome5Icons.pdf
+  \BLOCK{ if email }
+  \email{\VAR{email}}
+  \BLOCK{ endif }
+  \BLOCK{ if phone }
+  \phone{\VAR{phone}}
+  \BLOCK{ endif }
+  \BLOCK{ if address }
+  \mailaddress{\VAR{address}}
+  \BLOCK{ endif }
+  \BLOCK{ if location or country }
+  \location{\BLOCK{ if location }\VAR{location}\BLOCK{ endif }\BLOCK{ if location and country }, \BLOCK{ endif }\BLOCK{ if country }\VAR{country}\BLOCK{ endif }}
+  \BLOCK{ endif }
+  \BLOCK{ if homepage }
+  \homepage{\VAR{homepage}}
+  \BLOCK{ endif }
+  \BLOCK{ if twitter }
+  \twitter{\VAR{twitter}}
+  \BLOCK{ endif }
+  \BLOCK{ if linkeding }
+  \linkedin{\VAR{linkedin}}
+  \BLOCK{ endif }
+  \BLOCK{ if github_username }
+  \github{\VAR{github_username}}
+  \BLOCK{ endif }
+  \BLOCK{ if gitlab_username }
+  \gitlab{\VAR{gitlab_username}}
+  \BLOCK{ endif }
+  \BLOCK{ if stackexchange_id }
+  \printinfo{\faStackExchange}{StackExchange}[https://stackexchange.com/users/\VAR{stackexchange_id}?tab=accounts]
+  \BLOCK{ endif }
+  \BLOCK{ if telegram_username }
+  \telegram{\VAR{telegram_username}}
+  \BLOCK{ endif }
   %% You MUST add the academicons option to \documentclass, then compile with LuaLaTeX or XeLaTeX, if you want to use \orcid or other academicons commands.
-  % \orcid{0000-0000-0000-0000}
+  %\orcid{0000-0000-0000-0000}
   %% You can add your own arbtrary detail with
   %% \printinfo{symbol}{detail}[optional hyperlink prefix]
   % \printinfo{\faPaw}{Hey ho!}[https://example.com/]
@@ -141,78 +146,78 @@
 
 %% Set the left/right column width ratio to 6:4.
 
-\columnratio{$layout.columnratio$}
+\columnratio{\VAR{layout.columnratio}}
 
 % Start a 2-column paracol. Both the left and right columns will automatically
 % break across pages if things get too long.
 \begin{paracol}{2}
 
-[[ if experience_section.jobs.events|length > 0 ]]
-\cvsection{$experience_section.jobs.title$}
+\BLOCK{ if experience_section.jobs.events|length > 0 }
+\cvsection{\VAR{experience_section.jobs.title}}
 
-[[ for job in experience_section.jobs.events ]]
-\cvevent{$job.title$}{[[ if job.company ]]$job.company$[[ endif ]]}{[[if job.start_date ]]$job.start_date$[[ endif ]][[ if job.start_date and job.end_date]] -- [[ endif ]][[ if job.end_date ]]$job.end_date$[[ endif ]]}{[[ if job.location ]]$job.location$[[ endif ]]}
-[[ if job.description ]]
-$job.description$
-[[ else ]]
+\BLOCK{ for job in experience_section.jobs.events }
+\cvevent{\VAR{job.position}}{\BLOCK{ if job.company }\VAR{job.company}\BLOCK{ endif }}{\BLOCK{if job.start_date }\VAR{job.start_date}\BLOCK{ endif }\BLOCK{ if job.start_date and job.end_date} -- \BLOCK{ endif }\BLOCK{ if job.end_date }\VAR{job.end_date}\BLOCK{ endif }}{\BLOCK{ if job.location }\VAR{job.location}\BLOCK{ endif }}
+\BLOCK{ if job.description }
+\VAR{job.description}
+\BLOCK{ else }
 \begin{itemize}
-[[ for description in job.descriptions ]]
-\item $description$
-[[ endfor ]]
+\BLOCK{ for description in job.descriptions }
+\item \VAR{description}
+\BLOCK{ endfor }
 \end{itemize}
-[[ endif ]]
+\BLOCK{ endif }
 
-[[ if loop.index < experience_section.jobs.events|length ]]
+\BLOCK{ if loop.index < experience_section.jobs.events|length }
 \divider
-[[ endif ]]
-[[ endfor ]]
-[[ endif ]]
+\BLOCK{ endif }
+\BLOCK{ endfor }
+\BLOCK{ endif }
 
-[[ if layout.new_page.left_column.after_experience ]]
+\BLOCK{ if layout.new_page.left_column.after_experience }
 \newpage
-[[ else ]]
+\BLOCK{ else }
 \medskip
-[[ endif ]]
+\BLOCK{ endif }
 
-[[ if experience_section.projects.events|length > 0 ]]
-\cvsection{$experience_section.projects.title$}
+\BLOCK{ if experience_section.projects.events|length > 0 }
+\cvsection{\VAR{experience_section.projects.title}}
 
-[[ for project in experience_section.projects.events ]]
-\cvevent{$project.name$}{[[ if project.institution ]]$project.institution$[[ endif ]]}{[[ if project.start_date ]]$project.start_date$[[ endif ]][[ if project.start_date and project.end_date ]] -- [[ endif ]][[ if project.end_date ]]$project.end_date$[[ endif ]]}{[[ if project.location ]]$project.location$[[ endif ]]}
-[[ if project.description ]]
-$project.description$
-[[ else ]]
+\BLOCK{ for project in experience_section.projects.events }
+\cvevent{\VAR{project.name}}{\BLOCK{ if project.institution }\VAR{project.institution}\BLOCK{ endif }}{\BLOCK{ if project.start_date }\VAR{project.start_date}\BLOCK{ endif }\BLOCK{ if project.start_date and project.end_date } -- \BLOCK{ endif }\BLOCK{ if project.end_date }\VAR{project.end_date}\BLOCK{ endif }}{\BLOCK{ if project.location }\VAR{project.location}\BLOCK{ endif }}
+\BLOCK{ if project.description }
+\VAR{project.description}
+\BLOCK{ else }
 \begin{itemize}
-[[ for description in project.descriptions ]]
-\item $description$
-[[ endfor ]]
+\BLOCK{ for description in project.descriptions }
+\item \VAR{description}
+\BLOCK{ endfor }
 \end{itemize}
-[[ endif ]]
+\BLOCK{ endif }
 
-[[ if loop.index < experience_section.projects.events|length ]]
+\BLOCK{ if loop.index < experience_section.projects.events|length }
 \divider
-[[ endif ]]
-[[ endfor ]]
-[[ endif ]]
+\BLOCK{ endif }
+\BLOCK{ endfor }
+\BLOCK{ endif }
 
 
-[[ if layout.new_page.left_column.after_projects ]]
+\BLOCK{ if layout.new_page.left_column.after_projects }
 \newpage
-[[ else ]]
+\BLOCK{ else }
 \medskip
-[[ endif ]]
+\BLOCK{ endif }
 
 
-\cvsection{$a_day_of_my_life.title$}
+\cvsection{\VAR{a_day_of_my_life.title}}
 
 % Adapted from @Jake's answer from http://tex.stackexchange.com/a/82729/226
 % \wheelchart{outer radius}{inner radius}{
 % comma-separated list of value/text width/color/detail}
 % hours/text-width/color-percent/text
-\wheelchart{$layout.a_day_of_my_life_wheel.outer_radius$cm}{$layout.a_day_of_my_life_wheel.inner_radius$cm}{%
-  [[ for activity in a_day_of_my_life.activities ]]
-  $activity.hours$/$activity.text_width$em/ADayOfMyLifeWheel!$activity.percent_color$/{$activity.text$}[[ if loop.index < a_day_of_my_life.activities|length ]],[[ endif ]]
-  [[ endfor ]]
+\wheelchart{\VAR{layout.a_day_of_my_life_wheel.outer_radius}cm}{\VAR{layout.a_day_of_my_life_wheel.inner_radius}cm}{%
+  \BLOCK{ for activity in a_day_of_my_life.activities }
+  \VAR{activity.hours}/\VAR{activity.text_width}em/ADayOfMyLifeWheel!\VAR{activity.percent_color}/{\VAR{activity.text}}\BLOCK{ if loop.index < a_day_of_my_life.activities|length },\BLOCK{ endif }
+  \BLOCK{ endfor }
 }
 %6/8em/accent!30/{Sleep,\\beautiful sleep},
 %3/8em/accent!40/Hopeful novelist by night,
@@ -220,11 +225,11 @@ $project.description$
 %2/10em/accent!100/Sports and relaxation,
 %5/6em/accent!20/Spending time with family
 
-[[ if layout.new_page.left_column.after_a_day_on_my_life ]]
+\BLOCK{ if layout.new_page.left_column.after_a_day_on_my_life }
 \newpage
-[[ else ]]
+\BLOCK{ else }
 \medskip
-[[ endif ]]
+\BLOCK{ endif }
 
 
 \cvsection{Publications}
@@ -245,10 +250,10 @@ $project.description$
 %% page if the content is too long.
 \switchcolumn
 
-\cvsection{My Life Philosophy}
+\cvsection{\VAR{my_life_philosophy.title}}
 
 \begin{quote}
-``Something smart or heartfelt, preferably in one sentence.''
+\VAR{my_life_philosophy.quote}
 \end{quote}
 
 \cvsection{Most Proud of}
