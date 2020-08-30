@@ -2,7 +2,7 @@ tagline: Desarrollador web fullstack
 homepage: mondeja.github.io/blog/es
 
 # "Experience" section
-experience_section:
+experience:
   # Title for the "Experience" section
   jobs:
     title: Experiencia
@@ -91,3 +91,57 @@ a_day_of_my_life:
 my_life_philosophy:
   title: 'Filosofía de trabajo'
   quote: 'Calidad y productividad en equilibrio, como genialidad y trabajo en equipo.'
+
+psychology:
+  title: 'Psicología {\faCogs}'
+  tags_groups:
+    - ['Ordenado', 'Persistente', 'Persuasivo', 'Adaptativo', 'Motivador', 'Curioso']
+
+programming_languages:
+  title: 'Lenguajes {\faFileCode}'
+  languages:
+    -
+      name: '{\faPython} Python'
+      stars: 5
+    -
+      name: '{\faNode} Javascript/NodeJS'
+      stars: 4
+    -
+      name: '{\faLinux} Bash'
+      stars: 4
+    -
+      name: '{\faDatabase} PgpSQL (Postgres)'
+      stars: 4
+    -
+      name: '{\faMarkdown} Markdown/RST'
+      stars: 5
+    -
+      name: '{\faCss3} CSS/HTML'
+      stars: 4
+    -
+      name: 'LaTeX'
+      stars: 3
+    -
+      name: Ruby
+      stars: 3
+
+technologies:
+  title: 'Tecnologías'
+  tags_groups:
+    - ['Django', 'Tornado', 'Flask', 'VueJS']
+    - ['Postgis', 'CartoDB', 'Leaflet']
+    - ['CI', 'Pytest', 'Celery', 'SSH', 'RPC']
+    - ['Jekyll', 'Sphinx', 'MkDocs']
+    - ['Internacionalización', 'Scraping', '\n', 'Patrones de diseño', 'Análisis de sistemas']
+
+#most_proud_of:
+#  title: "Más orgulloso de"
+#  achievements:
+#    -
+#      title: Soy muy guapo
+#      details: No, es mentira
+#      icon: faTrophy
+#    -
+#      title: Soy muy listo
+#      details: Tampoco, es mentira
+#      icon: faTrophy

@@ -152,10 +152,10 @@
 % break across pages if things get too long.
 \begin{paracol}{2}
 
-\BLOCK{ if experience_section.jobs.events|length > 0 }
-\cvsection{\VAR{experience_section.jobs.title}}
+\BLOCK{ if experience.jobs.events|length > 0 }
+\cvsection{\VAR{experience.jobs.title}}
 
-\BLOCK{ for job in experience_section.jobs.events }
+\BLOCK{ for job in experience.jobs.events }
 \cvevent{\VAR{job.position}}{\BLOCK{ if job.company }\VAR{job.company}\BLOCK{ endif }}{\BLOCK{if job.start_date }\VAR{job.start_date}\BLOCK{ endif }\BLOCK{ if job.start_date and job.end_date} -- \BLOCK{ endif }\BLOCK{ if job.end_date }\VAR{job.end_date}\BLOCK{ endif }}{\BLOCK{ if job.location }\VAR{job.location}\BLOCK{ endif }}
 \BLOCK{ if job.description }
 \VAR{job.description}
@@ -167,7 +167,7 @@
 \end{itemize}
 \BLOCK{ endif }
 
-\BLOCK{ if loop.index < experience_section.jobs.events|length }
+\BLOCK{ if loop.index < experience.jobs.events|length }
 \divider
 \BLOCK{ endif }
 \BLOCK{ endfor }
@@ -179,10 +179,10 @@
 \medskip
 \BLOCK{ endif }
 
-\BLOCK{ if experience_section.projects.events|length > 0 }
-\cvsection{\VAR{experience_section.projects.title}}
+\BLOCK{ if experience.projects.events|length > 0 }
+\cvsection{\VAR{experience.projects.title}}
 
-\BLOCK{ for project in experience_section.projects.events }
+\BLOCK{ for project in experience.projects.events }
 \cvevent{\VAR{project.name}}{\BLOCK{ if project.institution }\VAR{project.institution}\BLOCK{ endif }}{\BLOCK{ if project.start_date }\VAR{project.start_date}\BLOCK{ endif }\BLOCK{ if project.start_date and project.end_date } -- \BLOCK{ endif }\BLOCK{ if project.end_date }\VAR{project.end_date}\BLOCK{ endif }}{\BLOCK{ if project.location }\VAR{project.location}\BLOCK{ endif }}
 \BLOCK{ if project.description }
 \VAR{project.description}
@@ -194,7 +194,7 @@
 \end{itemize}
 \BLOCK{ endif }
 
-\BLOCK{ if loop.index < experience_section.projects.events|length }
+\BLOCK{ if loop.index < experience.projects.events|length }
 \divider
 \BLOCK{ endif }
 \BLOCK{ endfor }
@@ -250,35 +250,83 @@
 %% page if the content is too long.
 \switchcolumn
 
+\BLOCK{ if my_life_philosophy }
 \cvsection{\VAR{my_life_philosophy.title}}
-
 \begin{quote}
 \VAR{my_life_philosophy.quote}
 \end{quote}
+\BLOCK{ endif }
 
-\cvsection{Most Proud of}
+\medskip
 
-\cvachievement{\faTrophy}{Fantastic Achievement}{and some details about it}
+\BLOCK{ if most_proud_of }
+\cvsection{\VAR{most_proud_of.title}}
+\BLOCK{ for achievement in most_proud_of.achievements }
+\cvachievement{\\VAR{achievement.icon}}{\VAR{achievement.title}}{\VAR{achievement.details}}
 
+\BLOCK{ if loop.index < most_proud_of.achievements|length }
 \divider
+\BLOCK{ endif }
 
-\cvachievement{\faHeartbeat}{Another achievement}{more details about it of course}
+\BLOCK{ endfor }
 
-\divider
+\medskip
+\BLOCK{ endif }
 
-\cvachievement{\faHeartbeat}{Another achievement}{more details about it of course}
 
-\cvsection{Strengths}
+\BLOCK{ if psychology }
+\cvsection{\VAR{psychology.title}}
+\BLOCK{ for tag_group in psychology.tags_groups }
 
-\cvtag{Hard-working}
-\cvtag{Eye for detail}\\
-\cvtag{Motivator \& Leader}
+\BLOCK{ for tag in tag_group }
+\BLOCK{ if tag == '\\n' }
+\\
+\BLOCK{ else }
+\cvtag{\VAR{tag}}
+\BLOCK{ endif }
+\BLOCK{ endfor }
 
+\BLOCK{ if loop.index < psychology.tags_groups|length }
 \divider\smallskip
+\BLOCK{ endif }
+\BLOCK{ endfor }
 
-\cvtag{C++}
-\cvtag{Embedded Systems}\\
-\cvtag{Statistical Analysis}
+\medskip
+\BLOCK{ endif }
+
+
+
+\BLOCK{ if programming_languages }
+\cvsection{\VAR{programming_languages.title}}
+
+\BLOCK{ for language in programming_languages.languages }
+\cvskill{\VAR{language.name}}{\VAR{language.stars}}
+\BLOCK{ endfor }
+
+\medskip
+\BLOCK{ endif }
+
+\BLOCK{ if technologies }
+\cvsection{\VAR{technologies.title}}
+\BLOCK{ for tag_group in technologies.tags_groups }
+
+\BLOCK{ for tag in tag_group }
+\BLOCK{ if tag == '\\n' }
+\\
+\BLOCK{ else }
+\cvtag{\VAR{tag}}
+\BLOCK{ endif }
+\BLOCK{ endfor }
+
+\BLOCK{ if loop.index < technologies.tags_groups|length }
+\divider\smallskip
+\BLOCK{ endif }
+\BLOCK{ endfor }
+
+\medskip
+\BLOCK{ endif }
+
+
 
 \cvsection{Languages}
 
