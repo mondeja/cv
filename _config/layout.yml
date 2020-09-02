@@ -41,3 +41,10 @@ new_page:
     after_experience: false
     after_projects: false
     after_a_day_on_my_life: true
+  right_column:
+    after_my_life_philosophy: false
+    after_most_proud_of: false
+    after_psychology: false
+    after_programming_languages: false
+    after_technologies: false
+    after_languages: true

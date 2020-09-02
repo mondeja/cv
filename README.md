@@ -24,6 +24,12 @@ My own curriculum vitae written in LaTeX. It uses the awesome template
 - Template layout can be customized using the file `config/layout.yml`.
 - Template styles can be customized using the file `config/style.yml`.
 
+## Build
+
+```
+latex-ji18n
+```
+
 
 [altacv-link]: https://github.com/liantze/AltaCV
 [latex-ji18n-link]: https://github.com/mondeja/latex-ji18n

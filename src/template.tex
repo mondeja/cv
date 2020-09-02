@@ -23,7 +23,7 @@
 %% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
 % \documentclass[10pt,a4paper,normalphoto]{altacv}
 
-\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+\documentclass[10pt,a4paper,ragged2e,withhyper\BLOCK{ if style.normalphoto },normalphoto\BLOCK{ endif }]{altacv}
 %% AltaCV uses the fontawesome5 and academicons fonts
 %% and packages.
 %% See http://texdoc.net/pkg/fontawesome5 and http://texdoc.net/pkg/academicons for full list of symbols. You MUST compile with XeLaTeX or LuaLaTeX if you want to use academicons.
@@ -255,9 +255,13 @@
 \begin{quote}
 \VAR{my_life_philosophy.quote}
 \end{quote}
-\BLOCK{ endif }
 
+\BLOCK{ if layout.new_page.right_column.after_my_life_philosophy }
+\newpage
+\BLOCK{ else }
 \medskip
+\BLOCK{ endif }
+\BLOCK{ endif }
 
 \BLOCK{ if most_proud_of }
 \cvsection{\VAR{most_proud_of.title}}
@@ -270,7 +274,11 @@
 
 \BLOCK{ endfor }
 
+\BLOCK{ if layout.new_page.right_column.after_most_proud_of }
+\newpage
+\BLOCK{ else }
 \medskip
+\BLOCK{ endif }
 \BLOCK{ endif }
 
 
@@ -291,7 +299,11 @@
 \BLOCK{ endif }
 \BLOCK{ endfor }
 
+\BLOCK{ if layout.new_page.right_column.after_psychology }
+\newpage
+\BLOCK{ else }
 \medskip
+\BLOCK{ endif }
 \BLOCK{ endif }
 
 
@@ -303,7 +315,11 @@
 \cvskill{\VAR{language.name}}{\VAR{language.stars}}
 \BLOCK{ endfor }
 
+\BLOCK{ if layout.new_page.right_column.after_programming_languages }
+\newpage
+\BLOCK{ else }
 \medskip
+\BLOCK{ endif }
 \BLOCK{ endif }
 
 \BLOCK{ if technologies }
@@ -323,38 +339,49 @@
 \BLOCK{ endif }
 \BLOCK{ endfor }
 
+\BLOCK{ if layout.new_page.right_column.after_technologies }
+\newpage
+\BLOCK{ else }
 \medskip
+\BLOCK{ endif }
 \BLOCK{ endif }
 
 
+\BLOCK{ if languages }
+\cvsection{\VAR{languages.title}}
+\BLOCK{ for language in languages.languages }
 
-\cvsection{Languages}
+\cvskill{\VAR{language.name}}{\VAR{language.stars}}
 
-\cvskill{English}{5}
-\divider
+\BLOCK{ if loop.index < languages.languages|length }
+\divider\smallskip
+\BLOCK{ endif }
 
-\cvskill{Spanish}{4}
-\divider
+\BLOCK{ endfor }
 
-\cvskill{German}{3}
-
-%% Yeah I didn't spend too much time making all the
-%% spacing consistent... sorry. Use \smallskip, \medskip,
-%% \bigskip, \vpsace etc to make ajustments.
+\BLOCK{ if layout.new_page.right_column.after_languages }
+\newpage
+\BLOCK{ else }
 \medskip
+\BLOCK{ endif }
+\BLOCK{ endif }
 
-\cvsection{Education}
 
-\cvevent{Ph.D.\ in Your Discipline}{Your University}{Sept 2002 -- June 2006}{}
-Thesis title: Wonderful Research
+\BLOCK{ if education }
+\cvsection{\VAR{ education.title }}
 
+\BLOCK{ for event in education.events }
+
+\cvevent{\VAR{event.degree}}{\VAR{event.institution} -- \VAR{event.location}}{\VAR{event.start_date} -- \VAR{event.end_date}}{}
+
+\BLOCK{ if loop.index < education.events|length }
+\divider
+\BLOCK{ endif }
+
+\BLOCK{ endfor }
 \divider
 
-\cvevent{M.Sc.\ in Your Discipline}{Your University}{Sept 2001 -- June 2002}{}
-
-\divider
-
-\cvevent{B.Sc.\ in Your Discipline}{Stanford University}{Sept 1998 -- June 2001}{}
+\BLOCK{ endif }
 
 % \divider
 

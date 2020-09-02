@@ -8,3 +8,7 @@ colors:
   emphasis: '2E2E2E'
   body: '666666'
   a_day_of_my_life_wheel: '8F0D0D'
+
+# If true, the photos will be displayed as is,
+# cropped to a circle otherwise
+normalphoto: true

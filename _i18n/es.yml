@@ -110,7 +110,7 @@ programming_languages:
       name: '{\faLinux} Bash'
       stars: 4
     -
-      name: '{\faDatabase} PgpSQL (Postgres)'
+      name: '{\faDatabase} PlgpSQL (Postgres)'
       stars: 4
     -
       name: '{\faMarkdown} Markdown/RST'
@@ -133,6 +133,41 @@ technologies:
     - ['CI', 'Pytest', 'Celery', 'SSH', 'RPC']
     - ['Jekyll', 'Sphinx', 'MkDocs']
     - ['Internacionalización', 'Scraping', '\n', 'Patrones de diseño', 'Análisis de sistemas']
+
+languages:
+  title: 'Idiomas'
+  languages:
+    -
+      name: "Español (nativo)"
+      stars: 5
+    -
+      name: "Inglés"
+      stars: 5
+    -
+      name: "Francés"
+      stars: 3
+
+education:
+  title: 'Estudios'
+  events:
+    -
+      degree: Bachillerato de Ciencias Sociales
+      institution: IES Álvar Núñez
+      location: Jerez de la Frontera
+      start_date: Septiembre de 2010
+      end_date: Junio de 2012
+    -
+      degree: Antropología Social y Cultural
+      institution: Facultad de Geografía e Historia
+      location: Sevilla
+      start_date: Septiembre de 2012
+      end_date: Junio de 2014
+    -
+      degree: Curso de Agroecología Práctica
+      institution: Huerta Conciencia
+      location: Dos Hermanas
+      start_date: Septiembre de 2013
+      end_date: Junio de 2014
 
 #most_proud_of:
 #  title: "Más orgulloso de"
