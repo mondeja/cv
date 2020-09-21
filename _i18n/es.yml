@@ -169,6 +169,13 @@ education:
       start_date: Septiembre de 2013
       end_date: Junio de 2014
 
+publications:
+  title: Publicaciones
+  entrytypes:
+    misc:
+      title: Código abierto
+      icon: faBoxOpen
+
 #most_proud_of:
 #  title: "Más orgulloso de"
 #  achievements:

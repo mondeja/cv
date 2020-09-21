@@ -16,3 +16,4 @@ __pycache__/
 /i18n/_private/*.yml
 /src/*.tex
 !/src/template.tex
+/src/*.pdf

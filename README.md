@@ -27,7 +27,7 @@ My own curriculum vitae written in LaTeX. It uses the awesome template
 ## Build
 
 ```
-latex-ji18n
+latex-ji18n build --commands pdflatex,pdflatex,biber,pdflatex
 ```
 
 

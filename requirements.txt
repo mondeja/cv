@@ -1,0 +1,1 @@
+-e git+https://github.com/mondeja/latex-ji18n#egg=latex_ji18n

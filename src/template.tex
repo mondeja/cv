@@ -33,6 +33,7 @@
 
 % The paracol package lets you typeset columns of text in parallel
 \usepackage{paracol}
+\usepackage{hyperref}
 
 % Change the font if you want to, depending on whether
 % you're using pdflatex or xelatex/lualatex
@@ -82,7 +83,7 @@
 \renewcommand{\ratingmarker}{\faCircle}
 
 %% sample.bib contains your publications
-\addbibresource{sample.bib}
+\addbibresource{publications.bib}
 
 \begin{document}
 \name{\VAR{name}}
@@ -232,19 +233,16 @@
 \BLOCK{ endif }
 
 
-\cvsection{Publications}
+\cvsection{\VAR{publications.title}}
 
 \nocite{*}
 
-\printbibliography[heading=pubtype,title={\printinfo{\faBook}{Books}},type=book]
-
+\BLOCK{ for entrytype in _bibdb }
+\printbibliography[heading=pubtype,title={\printinfo{\\VAR{publications.entrytypes[entrytype].icon}}{\VAR{publications.entrytypes[entrytype].title}}},type=\VAR{ entrytype }]
+\BLOCK{ if loop.index < _bibdb|length }
 \divider
-
-\printbibliography[heading=pubtype,title={\printinfo{\faFile*[regular]}{Journal Articles}},type=article]
-
-\divider
-
-\printbibliography[heading=pubtype,title={\printinfo{\faUsers}{Conference Proceedings}},type=inproceedings]
+\BLOCK{ endif }
+\BLOCK{ endfor }
 
 %% Switch to the right column. This will now automatically move to the second
 %% page if the content is too long.
@@ -305,7 +303,6 @@
 \medskip
 \BLOCK{ endif }
 \BLOCK{ endif }
-
 
 
 \BLOCK{ if programming_languages }
@@ -379,25 +376,21 @@
 \BLOCK{ endif }
 
 \BLOCK{ endfor }
-\divider
-
 \BLOCK{ endif }
 
 % \divider
 
-\cvsection{Referees}
+%\cvsection{Referees}
 
 % \cvref{name}{email}{mailing address}
-\cvref{Prof.\ Alpha Beta}{Institute}{a.beta@university.edu}
-{Address Line 1\\Address line 2}
+%\cvref{Prof.\ Alpha Beta}{Institute}{a.beta@university.edu}
+%{Address Line 1\\Address line 2}
 
-\divider
+%\divider
 
-\cvref{Prof.\ Gamma Delta}{Institute}{g.delta@university.edu}
-{Address Line 1\\Address line 2}
-
+%\cvref{Prof.\ Gamma Delta}{Institute}{g.delta@university.edu}
+%{Address Line 1\\Address line 2}
 
 \end{paracol}
-
 
 \end{document}
